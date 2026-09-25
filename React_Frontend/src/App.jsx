@@ -2,24 +2,31 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
-
-// Placeholder Dashboard until Phase 6/7
-const PlaceholderDashboard = () => (
-  <div className="min-h-screen bg-[#0a0a0f] text-slate-200 flex items-center justify-center flex-col gap-4">
-      <h1 className="text-2xl font-bold text-indigo-400">Dashboard</h1>
-      <p className="text-slate-400">Welcome to the application!</p>
-  </div>
-);
+import DashboardPage from './pages/DashboardPage';
+import ProductCatalogPage from './pages/ProductCatalogPage';
+import ProductFormPage from './pages/ProductFormPage';
+import Layout from './components/Layout';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/dashboard" element={<PlaceholderDashboard />} />
+          <Route element={<ProtectedRoute />}>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/products" element={<ProductCatalogPage />} />
+              <Route element={<ProtectedRoute requireAdmin={true} />}>
+                <Route path="/products/new" element={<ProductFormPage />} />
+                <Route path="/products/edit/:id" element={<ProductFormPage />} />
+              </Route>
+            </Route>
+          </Route>
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

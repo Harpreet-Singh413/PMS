@@ -58,4 +58,24 @@ public class GlobalExceptionHandler {
         body.put("message", "Invalid credentials");
         return new ResponseEntity<>(body, HttpStatus.UNAUTHORIZED);
     }
+
+    @ExceptionHandler(DuplicateSkuException.class)
+    public ResponseEntity<Map<String, Object>> handleDuplicateSku(DuplicateSkuException ex) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("status", HttpStatus.CONFLICT.value());
+        body.put("error", "Conflict");
+        body.put("message", ex.getMessage());
+        return new ResponseEntity<>(body, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(ProductNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleProductNotFound(ProductNotFoundException ex) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("status", HttpStatus.NOT_FOUND.value());
+        body.put("error", "Not Found");
+        body.put("message", ex.getMessage());
+        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
 }

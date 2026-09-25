@@ -64,7 +64,7 @@ This project implements Role-Based Access Control (RBAC) to ensure that only aut
 
 1. Navigate to the frontend directory:
    ```bash
-   cd frontend
+   cd React_Frontend
    ```
 
 2. Install dependencies:
@@ -84,7 +84,7 @@ This project implements Role-Based Access Control (RBAC) to ensure that only aut
 
 ```text
 PMS/
-├── frontend/                 # React UI
+├── React_Frontend/           # React UI
 │   ├── src/
 │   │   ├── components/       # Reusable UI components
 │   │   ├── context/          # AuthContext for global session state
