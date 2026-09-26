@@ -156,7 +156,7 @@ const ProductCatalogPage = () => {
                                                 {product.category}
                                             </span>
                                         </td>
-                                        <td className="px-6 py-4 text-emerald-400 font-medium">${product.price.toFixed(2)}</td>
+                                        <td className="px-6 py-4 text-emerald-400 font-medium">₹{product.price.toFixed(2)}</td>
                                         <td className="px-6 py-4">
                                             <span className={product.stock < 10 ? 'text-amber-400 font-medium' : ''}>
                                                 {product.stock}

@@ -69,7 +69,7 @@ const RegisterPage = () => {
                             <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1">Full Name</label>
                             <div className="relative group">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><User className="h-5 w-5 text-slate-500" /></div>
-                                <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full pl-10 pr-4 py-2.5 bg-slate-900/50 border border-white/10 rounded-xl outline-none text-slate-200" />
+                                <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Enter your full name" className="w-full pl-10 pr-4 py-2.5 bg-slate-900/50 border border-white/10 rounded-xl outline-none text-slate-200" />
                             </div>
                             {errors.name && <p className="mt-1.5 text-xs text-red-400 ml-1">{errors.name}</p>}
                         </div>
@@ -77,7 +77,7 @@ const RegisterPage = () => {
                             <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1">Email</label>
                             <div className="relative group">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Mail className="h-5 w-5 text-slate-500" /></div>
-                                <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full pl-10 pr-4 py-2.5 bg-slate-900/50 border border-white/10 rounded-xl outline-none text-slate-200" />
+                                <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" className="w-full pl-10 pr-4 py-2.5 bg-slate-900/50 border border-white/10 rounded-xl outline-none text-slate-200" />
                             </div>
                             {errors.email && <p className="mt-1.5 text-xs text-red-400 ml-1">{errors.email}</p>}
                         </div>
@@ -85,7 +85,7 @@ const RegisterPage = () => {
                             <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1">Password</label>
                             <div className="relative group">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Lock className="h-5 w-5 text-slate-500" /></div>
-                                <input type="password" name="password" value={formData.password} onChange={handleChange} className="w-full pl-10 pr-4 py-2.5 bg-slate-900/50 border border-white/10 rounded-xl outline-none text-slate-200" />
+                                <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Create a password" className="w-full pl-10 pr-4 py-2.5 bg-slate-900/50 border border-white/10 rounded-xl outline-none text-slate-200" />
                             </div>
                             {errors.password && <p className="mt-1.5 text-xs text-red-400 ml-1">{errors.password}</p>}
                         </div>
@@ -93,7 +93,7 @@ const RegisterPage = () => {
                             <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1">Confirm Password</label>
                             <div className="relative group">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Lock className="h-5 w-5 text-slate-500" /></div>
-                                <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} className="w-full pl-10 pr-4 py-2.5 bg-slate-900/50 border border-white/10 rounded-xl outline-none text-slate-200" />
+                                <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} placeholder="Confirm your password" className="w-full pl-10 pr-4 py-2.5 bg-slate-900/50 border border-white/10 rounded-xl outline-none text-slate-200" />
                             </div>
                             {errors.confirmPassword && <p className="mt-1.5 text-xs text-red-400 ml-1">{errors.confirmPassword}</p>}
                         </div>

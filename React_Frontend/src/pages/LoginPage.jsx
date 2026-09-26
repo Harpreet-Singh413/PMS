@@ -39,8 +39,11 @@ const LoginPage = () => {
             login(data.token, data.user);
             navigate('/dashboard', { replace: true });
         } catch (error) {
-            if (error.status === 401) setSubmitError('Invalid email or password.');
-            else setSubmitError(error.message || 'Login failed. Please try again.');
+            console.error("Login error:", error);
+            setSubmitError(
+                error.message || 
+                (typeof error === 'string' ? error : 'Invalid email or password. Please try again.')
+            );
         } finally {
             setIsSubmitting(false);
         }
@@ -72,14 +75,14 @@ const LoginPage = () => {
                             <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1">Email</label>
                             <div className="relative group">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Mail className="h-5 w-5 text-slate-500" /></div>
-                                <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full pl-10 pr-4 py-2.5 bg-slate-900/50 border border-white/10 rounded-xl outline-none text-slate-200" />
+                                <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Enter your email" className="w-full pl-10 pr-4 py-2.5 bg-slate-900/50 border border-white/10 rounded-xl outline-none text-slate-200" />
                             </div>
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1">Password</label>
                             <div className="relative group">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><Lock className="h-5 w-5 text-slate-500" /></div>
-                                <input type="password" name="password" value={formData.password} onChange={handleChange} className="w-full pl-10 pr-4 py-2.5 bg-slate-900/50 border border-white/10 rounded-xl outline-none text-slate-200" />
+                                <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Enter your password" className="w-full pl-10 pr-4 py-2.5 bg-slate-900/50 border border-white/10 rounded-xl outline-none text-slate-200" />
                             </div>
                         </div>
                         <button type="submit" disabled={isSubmitting} className="w-full mt-6 py-3 px-4 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl flex justify-center items-center">

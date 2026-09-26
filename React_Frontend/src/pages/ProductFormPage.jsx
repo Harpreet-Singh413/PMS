@@ -166,7 +166,7 @@ const ProductFormPage = () => {
 
                     {/* Price */}
                     <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1">Price ($) *</label>
+                        <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1">Price (₹) *</label>
                         <input
                             type="number"
                             name="price"

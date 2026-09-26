@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Package, CheckCircle, Tags, AlertTriangle, DollarSign, Loader2 } from 'lucide-react';
+import { Package, CheckCircle, Tags, AlertTriangle, IndianRupee, Loader2 } from 'lucide-react';
 import { getDashboardSummary } from '../services/dashboardService';
 import { useAuth } from '../context/AuthContext';
 
@@ -92,8 +92,8 @@ const DashboardPage = () => {
                         />
                         <StatCard 
                             title="Total Inventory Value" 
-                            value={`$${summary?.totalInventoryValue?.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) || '0.00'}`} 
-                            icon={DollarSign} 
+                            value={`₹${summary?.totalInventoryValue?.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) || '0.00'}`} 
+                            icon={IndianRupee} 
                             colorClass="text-blue-400" 
                         />
                     </>
