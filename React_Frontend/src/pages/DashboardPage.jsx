@@ -4,13 +4,13 @@ import { getDashboardSummary } from '../services/dashboardService';
 import { useAuth } from '../context/AuthContext';
 
 const StatCard = ({ title, value, icon: Icon, colorClass }) => (
-    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl transition-all hover:bg-white/10">
+    <div className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 backdrop-blur-xl transition-all hover:bg-slate-50 dark:hover:bg-white/10 shadow-sm dark:shadow-none">
         <div className="flex items-center justify-between">
             <div>
-                <p className="text-sm font-medium text-slate-400">{title}</p>
-                <p className="text-3xl font-bold mt-2 text-slate-100">{value}</p>
+                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{title}</p>
+                <p className="text-3xl font-bold mt-2 text-slate-900 dark:text-slate-100">{value}</p>
             </div>
-            <div className={`p-4 rounded-xl bg-white/5 border border-white/5 ${colorClass}`}>
+            <div className={`p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 ${colorClass}`}>
                 <Icon className="w-6 h-6" />
             </div>
         </div>
@@ -47,7 +47,7 @@ const DashboardPage = () => {
 
     if (error) {
         return (
-            <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-xl">
+            <div className="p-4 bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 text-red-600 dark:text-red-400 rounded-xl">
                 {error}
             </div>
         );
@@ -57,8 +57,8 @@ const DashboardPage = () => {
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-100">Overview</h1>
-                    <p className="text-slate-400 text-sm mt-1">Welcome back, {user?.name}</p>
+                    <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Overview</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Welcome back, {user?.name}</p>
                 </div>
             </div>
 
@@ -67,19 +67,19 @@ const DashboardPage = () => {
                     title="Total Products" 
                     value={summary?.totalProducts || 0} 
                     icon={Package} 
-                    colorClass="text-indigo-400" 
+                    colorClass="text-indigo-500 dark:text-indigo-400" 
                 />
                 <StatCard 
                     title="Available Products" 
                     value={summary?.availableProducts || 0} 
                     icon={CheckCircle} 
-                    colorClass="text-emerald-400" 
+                    colorClass="text-emerald-500 dark:text-emerald-400" 
                 />
                 <StatCard 
                     title="Total Categories" 
                     value={summary?.totalCategories || 0} 
                     icon={Tags} 
-                    colorClass="text-purple-400" 
+                    colorClass="text-purple-500 dark:text-purple-400" 
                 />
                 
                 {user?.role === 'ADMIN' && (
@@ -88,13 +88,13 @@ const DashboardPage = () => {
                             title="Low Stock Alerts" 
                             value={summary?.lowStockCount || 0} 
                             icon={AlertTriangle} 
-                            colorClass="text-amber-400" 
+                            colorClass="text-amber-500 dark:text-amber-400" 
                         />
                         <StatCard 
                             title="Total Inventory Value" 
                             value={`₹${summary?.totalInventoryValue?.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) || '0.00'}`} 
                             icon={IndianRupee} 
-                            colorClass="text-blue-400" 
+                            colorClass="text-blue-500 dark:text-blue-400" 
                         />
                     </>
                 )}

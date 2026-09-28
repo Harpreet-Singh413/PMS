@@ -100,44 +100,44 @@ const ProductFormPage = () => {
             <div className="flex items-center gap-4">
                 <button
                     onClick={() => navigate('/products')}
-                    className="p-2 hover:bg-white/10 rounded-lg transition-colors text-slate-400 hover:text-white"
+                    className="p-2 hover:bg-slate-200 dark:hover:bg-white/10 rounded-lg transition-colors text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                 >
                     <ArrowLeft className="w-5 h-5" />
                 </button>
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-100">
+                    <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
                         {isEditMode ? 'Edit Product' : 'Add New Product'}
                     </h1>
                 </div>
             </div>
 
             {error && (
-                <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-xl flex items-center gap-2">
+                <div className="p-4 bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 text-red-600 dark:text-red-400 rounded-xl flex items-center gap-2">
                     <AlertCircle className="w-5 h-5 flex-shrink-0" />
                     {error}
                 </div>
             )}
 
-            <form onSubmit={handleSubmit} className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl space-y-6">
+            <form onSubmit={handleSubmit} className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 backdrop-blur-xl shadow-sm dark:shadow-none space-y-6">
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Name */}
                     <div className="md:col-span-2">
-                        <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1">Product Name *</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 ml-1">Product Name *</label>
                         <input
                             type="text"
                             name="name"
                             required
                             value={formData.name}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 bg-slate-900/50 border ${validationErrors.name ? 'border-red-500/50' : 'border-white/10'} rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-200`}
+                            className={`w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900/50 border ${validationErrors.name ? 'border-red-500/50' : 'border-slate-200 dark:border-white/10'} rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-900 dark:text-slate-200`}
                         />
-                        {validationErrors.name && <p className="text-xs text-red-400 mt-1 ml-1">{validationErrors.name}</p>}
+                        {validationErrors.name && <p className="text-xs text-red-500 dark:text-red-400 mt-1 ml-1">{validationErrors.name}</p>}
                     </div>
 
                     {/* SKU */}
                     <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1">SKU *</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 ml-1">SKU *</label>
                         <input
                             type="text"
                             name="sku"
@@ -145,28 +145,28 @@ const ProductFormPage = () => {
                             placeholder="e.g. PROD-123"
                             value={formData.sku}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 bg-slate-900/50 border ${validationErrors.sku ? 'border-red-500/50' : 'border-white/10'} rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-200 font-mono`}
+                            className={`w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900/50 border ${validationErrors.sku ? 'border-red-500/50' : 'border-slate-200 dark:border-white/10'} rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-900 dark:text-slate-200 font-mono`}
                         />
-                        {validationErrors.sku && <p className="text-xs text-red-400 mt-1 ml-1">{validationErrors.sku}</p>}
+                        {validationErrors.sku && <p className="text-xs text-red-500 dark:text-red-400 mt-1 ml-1">{validationErrors.sku}</p>}
                     </div>
 
                     {/* Category */}
                     <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1">Category *</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 ml-1">Category *</label>
                         <input
                             type="text"
                             name="category"
                             required
                             value={formData.category}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 bg-slate-900/50 border ${validationErrors.category ? 'border-red-500/50' : 'border-white/10'} rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-200`}
+                            className={`w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900/50 border ${validationErrors.category ? 'border-red-500/50' : 'border-slate-200 dark:border-white/10'} rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-900 dark:text-slate-200`}
                         />
-                        {validationErrors.category && <p className="text-xs text-red-400 mt-1 ml-1">{validationErrors.category}</p>}
+                        {validationErrors.category && <p className="text-xs text-red-500 dark:text-red-400 mt-1 ml-1">{validationErrors.category}</p>}
                     </div>
 
                     {/* Price */}
                     <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1">Price (₹) *</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 ml-1">Price (₹) *</label>
                         <input
                             type="number"
                             name="price"
@@ -175,14 +175,14 @@ const ProductFormPage = () => {
                             step="0.01"
                             value={formData.price}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 bg-slate-900/50 border ${validationErrors.price ? 'border-red-500/50' : 'border-white/10'} rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-200`}
+                            className={`w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900/50 border ${validationErrors.price ? 'border-red-500/50' : 'border-slate-200 dark:border-white/10'} rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-900 dark:text-slate-200`}
                         />
-                        {validationErrors.price && <p className="text-xs text-red-400 mt-1 ml-1">{validationErrors.price}</p>}
+                        {validationErrors.price && <p className="text-xs text-red-500 dark:text-red-400 mt-1 ml-1">{validationErrors.price}</p>}
                     </div>
 
                     {/* Stock */}
                     <div>
-                        <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1">Initial Stock *</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 ml-1">Initial Stock *</label>
                         <input
                             type="number"
                             name="stock"
@@ -191,43 +191,43 @@ const ProductFormPage = () => {
                             step="1"
                             value={formData.stock}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 bg-slate-900/50 border ${validationErrors.stock ? 'border-red-500/50' : 'border-white/10'} rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-200`}
+                            className={`w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900/50 border ${validationErrors.stock ? 'border-red-500/50' : 'border-slate-200 dark:border-white/10'} rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-900 dark:text-slate-200`}
                         />
-                        {validationErrors.stock && <p className="text-xs text-red-400 mt-1 ml-1">{validationErrors.stock}</p>}
+                        {validationErrors.stock && <p className="text-xs text-red-500 dark:text-red-400 mt-1 ml-1">{validationErrors.stock}</p>}
                     </div>
 
                     {/* Supplier */}
                     <div className="md:col-span-2">
-                        <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1">Supplier (Optional)</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 ml-1">Supplier (Optional)</label>
                         <input
                             type="text"
                             name="supplier"
                             value={formData.supplier}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 bg-slate-900/50 border ${validationErrors.supplier ? 'border-red-500/50' : 'border-white/10'} rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-200`}
+                            className={`w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900/50 border ${validationErrors.supplier ? 'border-red-500/50' : 'border-slate-200 dark:border-white/10'} rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-900 dark:text-slate-200`}
                         />
-                        {validationErrors.supplier && <p className="text-xs text-red-400 mt-1 ml-1">{validationErrors.supplier}</p>}
+                        {validationErrors.supplier && <p className="text-xs text-red-500 dark:text-red-400 mt-1 ml-1">{validationErrors.supplier}</p>}
                     </div>
 
                     {/* Description */}
                     <div className="md:col-span-2">
-                        <label className="block text-sm font-medium text-slate-300 mb-1.5 ml-1">Description (Optional)</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 ml-1">Description (Optional)</label>
                         <textarea
                             name="description"
                             rows="4"
                             value={formData.description}
                             onChange={handleChange}
-                            className={`w-full px-4 py-2.5 bg-slate-900/50 border ${validationErrors.description ? 'border-red-500/50' : 'border-white/10'} rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-200 resize-none`}
+                            className={`w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900/50 border ${validationErrors.description ? 'border-red-500/50' : 'border-slate-200 dark:border-white/10'} rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-900 dark:text-slate-200 resize-none`}
                         ></textarea>
-                        {validationErrors.description && <p className="text-xs text-red-400 mt-1 ml-1">{validationErrors.description}</p>}
+                        {validationErrors.description && <p className="text-xs text-red-500 dark:text-red-400 mt-1 ml-1">{validationErrors.description}</p>}
                     </div>
                 </div>
 
-                <div className="pt-4 border-t border-white/10 flex justify-end gap-3">
+                <div className="pt-4 border-t border-slate-200 dark:border-white/10 flex justify-end gap-3">
                     <button
                         type="button"
                         onClick={() => navigate('/products')}
-                        className="px-6 py-2.5 rounded-xl font-medium text-slate-300 hover:bg-white/10 transition-colors"
+                        className="px-6 py-2.5 rounded-xl font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/10 transition-colors"
                     >
                         Cancel
                     </button>

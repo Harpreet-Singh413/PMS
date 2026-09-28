@@ -75,8 +75,8 @@ const ProductCatalogPage = () => {
         <div className="space-y-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-slate-100">Product Catalog</h1>
-                    <p className="text-slate-400 text-sm mt-1">Manage and view your inventory</p>
+                    <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Product Catalog</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage and view your inventory</p>
                 </div>
                 {isAdmin && (
                     <Link
@@ -89,7 +89,7 @@ const ProductCatalogPage = () => {
                 )}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-xl">
+            <div className="flex flex-col sm:flex-row gap-4 bg-white dark:bg-white/5 p-4 rounded-2xl border border-slate-200 dark:border-white/10 backdrop-blur-xl shadow-sm dark:shadow-none">
                 <form onSubmit={handleSearch} className="flex-1 relative">
                     <Search className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                     <input
@@ -97,13 +97,13 @@ const ProductCatalogPage = () => {
                         placeholder="Search by name or SKU..."
                         value={searchInput}
                         onChange={(e) => setSearchInput(e.target.value)}
-                        className="w-full pl-10 pr-4 py-2 bg-slate-900/50 border border-white/10 rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-200 placeholder:text-slate-500"
+                        className="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-900 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500"
                     />
                 </form>
                 <select
                     value={categoryFilter}
                     onChange={handleCategoryChange}
-                    className="sm:w-48 px-4 py-2 bg-slate-900/50 border border-white/10 rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-200"
+                    className="sm:w-48 px-4 py-2 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-900 dark:text-slate-200"
                 >
                     <option value="">All Categories</option>
                     {categories.map((cat) => (
@@ -113,16 +113,16 @@ const ProductCatalogPage = () => {
             </div>
 
             {error && (
-                <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-xl flex items-center gap-2">
+                <div className="p-4 bg-red-50 dark:bg-red-500/10 border border-red-200 dark:border-red-500/20 text-red-600 dark:text-red-400 rounded-xl flex items-center gap-2">
                     <AlertCircle className="w-5 h-5" />
                     {error}
                 </div>
             )}
 
-            <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-xl">
+            <div className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl overflow-hidden backdrop-blur-xl shadow-sm dark:shadow-none">
                 <div className="overflow-x-auto">
-                    <table className="w-full text-left text-sm text-slate-300">
-                        <thead className="bg-slate-900/50 text-slate-400 font-medium border-b border-white/10">
+                    <table className="w-full text-left text-sm text-slate-700 dark:text-slate-300">
+                        <thead className="bg-slate-50 dark:bg-slate-900/50 text-slate-600 dark:text-slate-400 font-medium border-b border-slate-200 dark:border-white/10">
                             <tr>
                                 <th className="px-6 py-4">Product</th>
                                 <th className="px-6 py-4">SKU</th>
@@ -132,7 +132,7 @@ const ProductCatalogPage = () => {
                                 {isAdmin && <th className="px-6 py-4 text-right">Actions</th>}
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5">
+                        <tbody className="divide-y divide-slate-200 dark:divide-white/5">
                             {loading ? (
                                 <tr>
                                     <td colSpan={isAdmin ? 6 : 5} className="px-6 py-12 text-center">
@@ -148,17 +148,17 @@ const ProductCatalogPage = () => {
                                 </tr>
                             ) : (
                                 products.map((product) => (
-                                    <tr key={product.id} className="hover:bg-white/5 transition-colors">
-                                        <td className="px-6 py-4 font-medium text-slate-200">{product.name}</td>
-                                        <td className="px-6 py-4 text-slate-400 font-mono text-xs">{product.sku}</td>
+                                    <tr key={product.id} className="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                                        <td className="px-6 py-4 font-medium text-slate-900 dark:text-slate-200">{product.name}</td>
+                                        <td className="px-6 py-4 text-slate-500 dark:text-slate-400 font-mono text-xs">{product.sku}</td>
                                         <td className="px-6 py-4">
-                                            <span className="px-2.5 py-1 rounded-full bg-slate-800 text-xs font-medium border border-white/10">
+                                            <span className="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium border border-slate-200 dark:border-white/10">
                                                 {product.category}
                                             </span>
                                         </td>
-                                        <td className="px-6 py-4 text-emerald-400 font-medium">₹{product.price.toFixed(2)}</td>
+                                        <td className="px-6 py-4 text-emerald-600 dark:text-emerald-400 font-medium">₹{product.price.toFixed(2)}</td>
                                         <td className="px-6 py-4">
-                                            <span className={product.stock < 10 ? 'text-amber-400 font-medium' : ''}>
+                                            <span className={product.stock < 10 ? 'text-amber-600 dark:text-amber-400 font-medium' : ''}>
                                                 {product.stock}
                                             </span>
                                         </td>
@@ -166,13 +166,13 @@ const ProductCatalogPage = () => {
                                             <td className="px-6 py-4 text-right space-x-2">
                                                 <Link
                                                     to={`/products/edit/${product.id}`}
-                                                    className="inline-flex items-center p-2 rounded-lg hover:bg-indigo-500/20 text-indigo-400 transition-colors"
+                                                    className="inline-flex items-center p-2 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 transition-colors"
                                                 >
                                                     <Edit2 className="w-4 h-4" />
                                                 </Link>
                                                 <button
                                                     onClick={() => handleDelete(product.id)}
-                                                    className="inline-flex items-center p-2 rounded-lg hover:bg-red-500/20 text-red-400 transition-colors"
+                                                    className="inline-flex items-center p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/20 text-red-600 dark:text-red-400 transition-colors"
                                                 >
                                                     <Trash2 className="w-4 h-4" />
                                                 </button>
@@ -187,21 +187,21 @@ const ProductCatalogPage = () => {
                 
                 {/* Pagination */}
                 {!loading && totalPages > 1 && (
-                    <div className="px-6 py-4 border-t border-white/10 bg-slate-900/50 flex items-center justify-between">
+                    <div className="px-6 py-4 border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-slate-900/50 flex items-center justify-between">
                         <button
                             disabled={page === 0}
                             onClick={() => setPage(p => p - 1)}
-                            className="px-4 py-2 text-sm font-medium rounded-lg hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            className="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                         >
                             Previous
                         </button>
-                        <span className="text-sm text-slate-400">
+                        <span className="text-sm text-slate-500 dark:text-slate-400">
                             Page {page + 1} of {totalPages}
                         </span>
                         <button
                             disabled={page === totalPages - 1}
                             onClick={() => setPage(p => p + 1)}
-                            className="px-4 py-2 text-sm font-medium rounded-lg hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                            className="px-4 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-200 dark:hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                         >
                             Next
                         </button>
