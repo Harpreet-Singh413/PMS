@@ -4,13 +4,13 @@ import { getDashboardSummary } from '../services/dashboardService';
 import { useAuth } from '../context/AuthContext';
 
 const StatCard = ({ title, value, icon: Icon, colorClass }) => (
-    <div className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 backdrop-blur-xl transition-all hover:bg-slate-50 dark:hover:bg-white/10 shadow-sm dark:shadow-none">
-        <div className="flex items-center justify-between">
-            <div>
-                <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{title}</p>
-                <p className="text-3xl font-bold mt-2 text-slate-900 dark:text-slate-100">{value}</p>
+    <div className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 backdrop-blur-xl transition-all hover:bg-slate-50 dark:hover:bg-white/10 shadow-sm dark:shadow-none overflow-hidden h-full">
+        <div className="flex items-center justify-between gap-4 h-full">
+            <div className="min-w-0 flex-1">
+                <p className="text-sm font-medium text-slate-500 dark:text-slate-400 break-words">{title}</p>
+                <p className="text-2xl sm:text-3xl font-bold mt-2 text-slate-900 dark:text-slate-100 break-words">{value}</p>
             </div>
-            <div className={`p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 ${colorClass}`}>
+            <div className={`shrink-0 p-4 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 ${colorClass}`}>
                 <Icon className="w-6 h-6" />
             </div>
         </div>
