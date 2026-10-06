@@ -16,6 +16,7 @@ public class ProductResponse {
     private Double price;
     private Integer stock;
     private String supplier;
+    private String imageUrl;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

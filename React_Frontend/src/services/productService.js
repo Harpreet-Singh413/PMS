@@ -38,3 +38,18 @@ export const deleteProduct = async (id) => {
     const response = await api.delete(`/products/${id}`);
     return response.data;
 };
+
+export const uploadProductImage = async (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+        const response = await api.post('/upload', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        });
+        return response.data; // { url: '...' }
+    } catch (error) {
+        throw error.response?.data || error;
+    }
+};

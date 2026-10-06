@@ -48,6 +48,7 @@ public class ProductService {
                 .price(request.getPrice())
                 .stock(request.getStock())
                 .supplier(request.getSupplier())
+                .imageUrl(request.getImageUrl())
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .build();
@@ -71,6 +72,7 @@ public class ProductService {
         existing.setPrice(request.getPrice());
         existing.setStock(request.getStock());
         existing.setSupplier(request.getSupplier());
+        existing.setImageUrl(request.getImageUrl());
         existing.setUpdatedAt(LocalDateTime.now());
 
         return mapToResponse(productRepo.save(existing));
@@ -101,6 +103,7 @@ public class ProductService {
                 .price(product.getPrice())
                 .stock(product.getStock())
                 .supplier(product.getSupplier())
+                .imageUrl(product.getImageUrl())
                 .createdAt(product.getCreatedAt())
                 .updatedAt(product.getUpdatedAt())
                 .build();

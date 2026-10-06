@@ -32,6 +32,8 @@ public class Product {
 
     private String supplier;
 
+    private String imageUrl;
+
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;

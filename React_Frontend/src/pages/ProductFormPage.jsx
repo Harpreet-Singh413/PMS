@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, Loader2, Save, AlertCircle } from 'lucide-react';
-import { getProductById, createProduct, updateProduct } from '../services/productService';
+import { ArrowLeft, Loader2, Save, AlertCircle, Upload } from 'lucide-react';
+import { getProductById, createProduct, updateProduct, uploadProductImage } from '../services/productService';
+import api from '../services/api';
 
 const ProductFormPage = () => {
     const { id } = useParams();
@@ -15,9 +16,12 @@ const ProductFormPage = () => {
         description: '',
         price: '',
         stock: '',
-        supplier: ''
+        supplier: '',
+        imageUrl: ''
     });
 
+    const [imageFile, setImageFile] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
     const [loading, setLoading] = useState(isEditMode);
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState('');
@@ -35,8 +39,12 @@ const ProductFormPage = () => {
                         description: data.description || '',
                         price: data.price,
                         stock: data.stock,
-                        supplier: data.supplier || ''
+                        supplier: data.supplier || '',
+                        imageUrl: data.imageUrl || ''
                     });
+                    if (data.imageUrl) {
+                        setImagePreview(api.defaults.baseURL.replace('/api', '') + data.imageUrl);
+                    }
                 } catch (err) {
                     setError('Failed to load product details.');
                 } finally {
@@ -55,6 +63,18 @@ const ProductFormPage = () => {
         }
     };
 
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImageFile(file);
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmitting(true);
@@ -62,8 +82,16 @@ const ProductFormPage = () => {
         setValidationErrors({});
 
         try {
+            let uploadedImageUrl = formData.imageUrl;
+            
+            if (imageFile) {
+                const uploadRes = await uploadProductImage(imageFile);
+                uploadedImageUrl = uploadRes.url;
+            }
+
             const payload = {
                 ...formData,
+                imageUrl: uploadedImageUrl,
                 price: parseFloat(formData.price),
                 stock: parseInt(formData.stock, 10)
             };
@@ -207,6 +235,36 @@ const ProductFormPage = () => {
                             className={`w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-900/50 border ${validationErrors.supplier ? 'border-red-500/50' : 'border-slate-200 dark:border-white/10'} rounded-xl focus:ring-2 focus:ring-indigo-500/50 outline-none text-slate-900 dark:text-slate-200`}
                         />
                         {validationErrors.supplier && <p className="text-xs text-red-500 dark:text-red-400 mt-1 ml-1">{validationErrors.supplier}</p>}
+                    </div>
+
+                    {/* Image Upload */}
+                    <div className="md:col-span-2">
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 ml-1">Product Image</label>
+                        <div className="flex items-center gap-6">
+                            {imagePreview ? (
+                                <div className="w-24 h-24 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden bg-slate-50 dark:bg-slate-900/50 flex-shrink-0">
+                                    <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                                </div>
+                            ) : (
+                                <div className="w-24 h-24 rounded-xl border-2 border-dashed border-slate-200 dark:border-white/10 flex items-center justify-center bg-slate-50 dark:bg-slate-900/50 text-slate-400 flex-shrink-0">
+                                    <Upload className="w-8 h-8 opacity-50" />
+                                </div>
+                            )}
+                            <div className="flex-1">
+                                <label className="flex items-center justify-center w-full px-4 py-2.5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl cursor-pointer hover:bg-slate-50 dark:hover:bg-white/10 transition-colors">
+                                    <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                                        Choose File
+                                    </span>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={handleImageChange}
+                                        className="hidden"
+                                    />
+                                </label>
+                                <p className="text-xs text-slate-500 mt-2 ml-1">JPG, PNG, GIF up to 5MB</p>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Description */}

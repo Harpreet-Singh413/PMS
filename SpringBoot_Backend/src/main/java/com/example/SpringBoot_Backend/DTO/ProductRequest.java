@@ -29,4 +29,6 @@ public class ProductRequest {
 
     @Size(max = 150, message = "Supplier must not exceed 150 characters")
     private String supplier;
+
+    private String imageUrl;
 }
