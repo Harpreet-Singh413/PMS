@@ -242,8 +242,8 @@ const ProductFormPage = () => {
                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5 ml-1">Product Image</label>
                         <div className="flex items-center gap-6">
                             {imagePreview ? (
-                                <div className="w-24 h-24 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden bg-slate-50 dark:bg-slate-900/50 flex-shrink-0">
-                                    <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                                <div className="w-24 h-24 rounded-xl border border-slate-200 dark:border-white/10 overflow-hidden bg-white flex-shrink-0 p-2">
+                                    <img src={imagePreview} alt="Preview" className="w-full h-full object-contain" />
                                 </div>
                             ) : (
                                 <div className="w-24 h-24 rounded-xl border-2 border-dashed border-slate-200 dark:border-white/10 flex items-center justify-center bg-slate-50 dark:bg-slate-900/50 text-slate-400 flex-shrink-0">

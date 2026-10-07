@@ -132,11 +132,11 @@ const ProductCatalogPage = () => {
                 ) : (
                     products.map((product) => (
                         <div key={product.id} className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl overflow-hidden backdrop-blur-xl shadow-sm hover:shadow-md transition-all flex flex-col group">
-                            <div className="aspect-square bg-slate-100 dark:bg-slate-800/50 relative overflow-hidden flex items-center justify-center">
+                            <div className="aspect-square bg-white relative overflow-hidden flex items-center justify-center p-6">
                                 {product.imageUrl ? (
-                                    <img src={product.imageUrl.startsWith('http') ? product.imageUrl : api.defaults.baseURL.replace('/api', '') + product.imageUrl} alt={product.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                                    <img src={product.imageUrl.startsWith('http') ? product.imageUrl : api.defaults.baseURL.replace('/api', '') + product.imageUrl} alt={product.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300" />
                                 ) : (
-                                    <PackageX className="w-12 h-12 text-slate-300 dark:text-slate-600" />
+                                    <PackageX className="w-12 h-12 text-slate-300" />
                                 )}
                                 {product.stock < 10 && product.stock > 0 && (
                                     <span className="absolute top-3 right-3 px-2.5 py-1 bg-amber-500 text-white text-xs font-bold rounded-lg shadow-sm backdrop-blur-md">
