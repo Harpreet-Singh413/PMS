@@ -43,7 +43,7 @@ const ProductFormPage = () => {
                         imageUrl: data.imageUrl || ''
                     });
                     if (data.imageUrl) {
-                        setImagePreview(api.defaults.baseURL.replace('/api', '') + data.imageUrl);
+                        setImagePreview(data.imageUrl.startsWith('http') ? data.imageUrl : api.defaults.baseURL.replace('/api', '') + data.imageUrl);
                     }
                 } catch (err) {
                     setError('Failed to load product details.');
